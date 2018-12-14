@@ -1,0 +1,31 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket = io.connect(document.domain + ':' + location.port);
+    socket.on('connected', function() {
+		console.log("client connected")
+    });
+function send()
+	{
+	socket.emit('message',document.getElementById("user_message").value)
+	document.getElementById("messages").value+="You:	"+document.getElementById("user_message").value+"\n";
+	document.getElementById("user_message").value=""
+	var new_msg=true
+	socket.on('reply', function(msg) {
+		console.log(msg+"recieved")
+		if (new_msg){
+		document.getElementById("messages").value+="Bot message: "+msg+"\n";
+		new_msg=false
+		}
+	});
+	}
+</script>
+<html>
+<center>
+<font size="20">
+<header style="text-align:center"> Chat Bot </header></br>
+</font>
+<textarea id="messages" value="" style="align-content:center" rows="30" cols="100" disabled></textarea></br></br>
+<input id="user_message" value="" type="text" ></input>
+<button  id="send" value="send" onclick="send()">Send</button></br>
+</center>
+</html>
