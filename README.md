@@ -19,7 +19,7 @@ This is the flask socketio server which is responsible for recieving the user me
 Description of folders:
 
 data:
-This folder contains the dataset files.
+This folder contains the dataset files. 
 
 model:
 This file contains the trained models for genre classification model and document classification model.
